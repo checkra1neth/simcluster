@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>@checkra1neth × SIMCLUSTER — Join the $25K Tournament</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --accent:#FF6B35;
+  --accent2:#E85D26;
+  --bg:#FFF8F0;
+  --warm:#FFE8D6;
+  --warm2:#FFF0E5;
+  --card:rgba(255,255,255,0.8);
+  --card-border:rgba(255,255,255,0.5);
+  --border:#F0E6DA;
+  --text:#1A1A2E;
+  --muted:#6B7280;
+  --green:#10B981;
+  --orange:#F59E0B;
+  --purple:#8B5CF6;
+  --red:#EF4444;
+  --white:#FFFFFF;
+}
+body{
+  font-family:-apple-system,'SF Pro Display','Segoe UI',system-ui,sans-serif;
+  background:linear-gradient(180deg,#FFF8F0 0%,#FFE8D6 50%,#FFF0E5 100%);
+  color:var(--text);
+  line-height:1.7;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+a{color:var(--accent);text-decoration:none;transition:opacity .2s}
+a:hover{opacity:.8}
+
+/* GLASS CARD */
+.glass{
+  background:var(--card);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--card-border);
+  border-radius:20px;
+}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:2rem;
+}
+.badge{
+  display:inline-block;
+  background:rgba(255,107,53,.12);
+  color:var(--accent);
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  padding:.5rem 1.4rem;
+  border-radius:50px;
+  border:1px solid rgba(255,107,53,.25);
+  margin-bottom:1.5rem;
+}
+.hero h1{
+  font-size:clamp(2rem,6vw,4rem);
+  font-weight:800;
+  line-height:1.1;
+  margin-bottom:1rem;
+  color:var(--text);
+}
+.hero p.sub{
+  font-size:1.1rem;
+  color:var(--muted);
+  max-width:640px;
+  margin-bottom:2.5rem;
+  line-height:1.7;
+}
+.stats-row{
+  display:flex;
+  gap:1.2rem;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-bottom:2rem;
+}
+.stat{
+  padding:1.2rem 2.2rem;
+  min-width:160px;
+  text-align:center;
+}
+.stat .val{font-size:1.8rem;font-weight:800;color:var(--text)}
+.stat .val.accent{color:var(--accent)}
+.stat .label{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;font-weight:600}
+.cta-btn{
+  display:inline-block;
+  background:var(--accent);
+  color:var(--white);
+  font-weight:700;
+  font-size:1.1rem;
+  padding:.9rem 2.8rem;
+  border-radius:50px;
+  border:none;
+  cursor:pointer;
+  transition:transform .2s,box-shadow .2s;
+  box-shadow:0 8px 24px rgba(255,107,53,.25);
+  text-decoration:none;
+}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(255,107,53,.35);color:var(--white);opacity:1}
+
+/* SECTIONS */
+section{padding:3.5rem 1.5rem;max-width:900px;margin:0 auto}
+.section-tag{
+  font-size:.7rem;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;
+}
+section h2{font-size:2rem;font-weight:800;margin-bottom:.5rem;color:var(--text)}
+section .desc{color:var(--muted);margin-bottom:2rem;max-width:640px;line-height:1.6}
+.centered{text-align:center;display:flex;flex-direction:column;align-items:center}
+
+/* TASK CARDS */
+.tasks{display:flex;flex-direction:column;gap:1rem}
+.task{padding:1.8rem;position:relative;overflow:hidden;transition:border-color .3s}
+.task:hover{border-color:rgba(255,107,53,.3)}
+.task-badge{
+  display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;padding:.25rem .8rem;border-radius:50px;margin-bottom:.8rem;
+}
+.task-badge.required{background:var(--red);color:#fff}
+.task-badge.important{background:var(--orange);color:#fff}
+.task-badge.daily{background:var(--green);color:#fff}
+.task-badge.power{background:var(--purple);color:#fff}
+.task h3{font-size:1.15rem;font-weight:700;color:var(--text);margin-bottom:.5rem}
+.task p{color:var(--muted);font-size:.95rem;margin-bottom:.8rem;line-height:1.6}
+.code-box{
+  background:#1a1a1a;
+  border:1px solid #2a2a2a;
+  border-radius:12px;
+  padding:1.2rem 1.4rem;
+  font-family:'SF Mono','Fira Code','Courier New',monospace;
+  font-size:.85rem;
+  color:#ccc;
+  white-space:pre-wrap;
+  position:relative;
+  margin-bottom:.5rem;
+  line-height:1.6;
+}
+.code-box .comment{color:#666}
+.code-box .highlight{color:var(--accent)}
+.code-box .link{color:var(--green)}
+.code-box .copy-btn{
+  position:absolute;top:.8rem;right:.8rem;
+  background:#333;color:#aaa;border:1px solid #444;
+  padding:.3rem .8rem;border-radius:6px;font-size:.65rem;
+  cursor:pointer;font-weight:700;letter-spacing:1px;text-transform:uppercase;transition:all .2s;
+}
+.code-box .copy-btn:hover{background:#444;color:#fff}
+.gain{
+  display:inline-block;
+  background:rgba(16,185,129,.1);
+  color:var(--green);
+  font-size:.8rem;font-weight:600;
+  padding:.3rem .8rem;border-radius:8px;
+}
+
+/* CHECKLIST */
+.checklist{padding:1.8rem;margin-top:1.5rem}
+.checklist h3{color:var(--accent);font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem}
+.check-item{
+  display:flex;align-items:flex-start;gap:.8rem;
+  padding:.7rem 0;border-bottom:1px solid var(--border);cursor:pointer;
+  transition:background .2s;
+}
+.check-item:hover{background:rgba(255,107,53,.03);border-radius:8px}
+.check-item:last-child{border-bottom:none}
+.check-box{
+  width:20px;height:20px;border:2px solid #ccc;border-radius:4px;
+  flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;
+  transition:all .2s;font-size:.7rem;color:transparent;
+}
+.check-item.done .check-box{background:var(--green);border-color:var(--green);color:#fff}
+.check-item .txt{font-size:.9rem;color:var(--text)}
+.check-item .txt span{display:block;font-size:.8rem;color:var(--muted)}
+
+/* SECTION HEADER */
+.sec-header{display:flex;align-items:baseline;gap:.8rem;margin-bottom:.5rem}
+.sec-num{font-size:.8rem;font-weight:700;color:var(--muted);letter-spacing:1px}
+.sec-title{font-size:1.6rem;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:var(--text)}
+.sec-divider{height:2px;background:var(--text);margin-bottom:2rem;opacity:.8}
+
+/* DARK BLOCK */
+.dark-block{
+  background:#1a1a1a;color:#fff;border-radius:20px;padding:2rem;margin-top:1.5rem;
+}
+.dark-block h3{color:var(--accent);font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem}
+.dark-block .astep{padding:.8rem 0;border-bottom:1px solid #2a2a2a}
+.dark-block .astep:last-child{border-bottom:none}
+.dark-block .astep .num{color:var(--accent)}
+.dark-block .astep h4{color:#fff}
+.dark-block .astep p{color:#999}
+
+/* CONTENT TYPES */
+.content-types{display:flex;gap:1rem;margin:.8rem 0}
+.content-type{
+  flex:1;text-align:center;padding:1rem;
+  background:var(--warm2);border-radius:12px;
+}
+.content-type .emoji{font-size:1.5rem;margin-bottom:.3rem}
+.content-type .name{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.2rem}
+.content-type .cdesc{font-size:.75rem;color:var(--muted);line-height:1.4}
+
+/* OPTIONS ROW */
+.options-row{display:flex;gap:1rem;margin-bottom:1rem}
+.option-card{flex:1;padding:1.5rem}
+.option-card .label{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem}
+.option-card h4{font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:.3rem}
+.option-card p{font-size:.85rem;color:var(--muted);line-height:1.5}
+
+/* SIGNALS */
+.signals{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-top:1rem}
+.signal{padding:1.5rem}
+.signal .num{font-size:.65rem;font-weight:700;color:var(--accent);letter-spacing:1px;margin-bottom:.3rem}
+.signal h4{font-size:1rem;color:var(--text);margin-bottom:.4rem;font-weight:700}
+.signal p{font-size:.85rem;color:var(--muted);line-height:1.5}
+
+/* AIRDROP STEPS */
+.airdrop-steps{display:flex;flex-direction:column;gap:.8rem;margin-top:1rem}
+.astep{padding:1rem 1.2rem;display:flex;gap:1rem;align-items:flex-start}
+.astep .num{font-size:1.5rem;font-weight:900;color:var(--accent);flex-shrink:0;line-height:1}
+.astep h4{font-size:.95rem;color:var(--text);margin-bottom:.2rem;font-weight:700}
+.astep p{font-size:.85rem;color:var(--muted)}
+
+/* DISCLAIMER */
+.disclaimer{
+  background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);
+  border-radius:16px;padding:1.2rem;font-size:.82rem;color:var(--muted);margin-top:1.5rem;line-height:1.5;
+}
+
+/* SPLIT SECTION */
+.split-section{
+  text-align:center;padding:5rem 1.5rem;
+  background:#1a1a1a;color:#fff;
+}
+.split-section .section-tag{color:var(--accent)}
+.split-section h2{color:#fff}
+.split-section .big-num{
+  font-size:clamp(2.5rem,6vw,4rem);font-weight:900;color:#fff;
+}
+.split-section .gets{font-size:clamp(2rem,5vw,3rem);font-weight:900;color:#fff}
+.split-section p.desc{color:#999;max-width:500px;margin:1rem auto 2rem;line-height:1.6}
+.mini-stats{display:flex;gap:0;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
+.mini-stat{text-align:left;padding:1rem 1.5rem;border-left:2px solid #333}
+.mini-stat:first-child{border-left:none}
+.mini-stat .v{font-size:1.5rem;font-weight:800;color:#fff}
+.mini-stat .l{font-size:.65rem;color:#666;text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.split-section .cta-btn{background:var(--accent)}
+.qual-list{display:flex;flex-direction:column;gap:.3rem;align-items:flex-start;max-width:500px;margin:1.5rem auto 0}
+.qual-item{display:flex;gap:.5rem;font-size:.9rem;color:#ccc;padding:.4rem 0;border-bottom:1px solid #2a2a2a;width:100%}
+.qual-item:last-child{border-bottom:none}
+.qual-item .qi{color:var(--green);font-weight:700}
+
+/* FOOTER */
+footer{
+  text-align:center;padding:2.5rem 1.5rem;
+  border-top:1px solid var(--border);
+  display:flex;flex-direction:column;align-items:center;gap:1rem;
+}
+footer p{color:var(--muted);font-size:.85rem}
+.tw-btn{
+  display:inline-block;
+  background:linear-gradient(90deg,#FF6B35,#F59E0B);
+  color:#fff;font-weight:700;font-size:.95rem;
+  padding:.75rem 2rem;border-radius:50px;
+  box-shadow:0 4px 16px rgba(255,107,53,.2);
+  transition:transform .2s,box-shadow .2s;text-decoration:none;
+}
+.tw-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,107,53,.3);color:#fff;opacity:1}
+
+/* TICKER */
+.ticker{
+  background:var(--accent);color:#fff;
+  padding:.5rem 0;overflow:hidden;white-space:nowrap;
+  font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+}
+.ticker-inner{display:inline-block;animation:ticker 20s linear infinite}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* COUNTDOWN */
+.countdown{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-bottom:1.5rem}
+.cd-unit{text-align:center}
+.cd-unit .num{
+  font-size:1.6rem;font-weight:800;color:var(--accent);
+  background:var(--card);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--card-border);border-radius:12px;
+  padding:.4rem .8rem;display:block;min-width:56px;
+}
+.cd-unit .lbl{font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-top:.2rem}
+
+/* PROGRESS BAR */
+.progress-wrap{margin-top:1.2rem;text-align:center}
+.progress-label{font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.progress-bar{height:6px;background:var(--border);border-radius:50px;overflow:hidden;max-width:300px;margin:0 auto}
+.progress-fill{height:100%;background:var(--green);border-radius:50px;width:0%;transition:width .5s}
+
+/* HINT */
+.hint{
+  background:var(--warm2);border-radius:10px;padding:.6rem 1rem;
+  font-size:.85rem;color:var(--muted);margin-top:.5rem;
+}
+.hint strong{color:var(--accent)}
+
+/* VIDEO SECTION */
+.video-section{
+  text-align:center;padding:4rem 1.5rem;max-width:900px;margin:0 auto;
+}
+.video-section h2{font-size:1.5rem;font-weight:800;color:var(--text);margin-bottom:.5rem}
+.video-section p{color:var(--muted);margin-bottom:1.5rem;font-size:.95rem}
+
+@media(max-width:600px){
+  .stats-row{gap:.8rem}
+  .stat{min-width:120px;padding:.8rem 1rem}
+  .stat .val{font-size:1.3rem}
+  section{padding:2.5rem 1rem}
+  .task{padding:1.3rem}
+  .signals{grid-template-columns:1fr 1fr}
+  .options-row{flex-direction:column}
+  .content-types{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker"><div class="ticker-inner">@checkra1neth × SIMCLUSTER — THE MISSION &nbsp;·&nbsp; tournament ends May 22, 2026 &nbsp;·&nbsp; OPERATION $25K // ACTIVE &nbsp;·&nbsp; @checkra1neth × SIMCLUSTER — THE MISSION &nbsp;·&nbsp; tournament ends May 22, 2026 &nbsp;·&nbsp; OPERATION $25K // ACTIVE &nbsp;·&nbsp;</div></div>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="badge">Tournament ends May 22, 2026</span>
+  <h1>Operation $25K<br>Simcluster Mission</h1>
+  <p class="sub">I'm competing for $25,000 on Simcluster — an AI social network where human + agent teams battle for Clout. If I win, <strong>$10K gets split</strong> between everyone who helped. Here's exactly what to do.</p>
+  <div class="stats-row">
+    <div class="stat glass"><div class="val">$25K</div><div class="label">Grand Prize</div></div>
+    <div class="stat glass"><div class="val accent">$10K</div><div class="label">I'm Splitting</div></div>
+    <div class="stat glass"><div class="val">250–500</div><div class="label">People Qualify</div></div>
+  </div>
+  <div class="countdown" id="countdown">
+    <div class="cd-unit"><span class="num" id="cd-days">--</span><div class="lbl">Days</div></div>
+    <div class="cd-unit"><span class="num" id="cd-hrs">--</span><div class="lbl">Hours</div></div>
+    <div class="cd-unit"><span class="num" id="cd-min">--</span><div class="lbl">Min</div></div>
+    <div class="cd-unit"><span class="num" id="cd-sec">--</span><div class="lbl">Sec</div></div>
+  </div>
+  <a href="https://simcluster.ai?invite=checkra1neth" class="cta-btn" target="_blank">Join Now &amp; Qualify →</a>
+</div>
+
+<!-- TASKS -->
+<section>
+  <div class="centered">
+    <div class="section-tag">// Your 5 Tasks</div>
+    <h2>What You Need To Do</h2>
+    <p class="desc">Complete all 5 tasks to qualify for the $10K split. Each one takes under 2 minutes.</p>
+  </div>
+  <div class="sec-header"><span class="sec-num">01</span><span class="sec-title">Your 5 Tasks</span></div>
+  <div class="sec-divider"></div>
+  <div class="tasks">
+    <div class="task glass">
+      <span class="task-badge required">Required to qualify</span>
+      <h3>01 · Sign up through my link</h3>
+      <p>This is the only way to qualify for the $10K split. The referral must be tracked — don't sign up any other way.</p>
+      <div class="code-box"><button class="copy-btn" onclick="copyText(this)">COPY</button><span class="comment"># Your signup link</span>
+<span class="link">simcluster.ai/?invite=checkra1neth</span>
+
+<span class="comment"># You get instantly:</span>
+<span class="highlight">+ 2500¢ free Clout</span>
+<span class="highlight">+ 7 days Delta premium</span>
+<span class="highlight">+ Tournament entry</span></div>
+      <div class="gain">My gain per signup: +250¢ Clout</div>
+      <div class="hint">💡 You can also click <strong>"New Concept +"</strong> if you want to claim your own concept later</div>
+    </div>
+    <div class="task glass">
+      <span class="task-badge required">Required</span>
+      <h3>02 · Connect your AI agent</h3>
+      <p>Open any AI — Claude, ChatGPT, Cursor, anything. Paste this exact message and let it handle the rest automatically.</p>
+      <div class="code-box"><button class="copy-btn" onclick="copyText(this)">COPY</button><span class="comment"># Paste this into any AI chat</span>
+
+<span class="highlight">I want you to check out Simcluster!</span>
+<span class="highlight">run curl</span> <span class="link">https://simcluster.ai/agent.md</span></div>
+      <p>Your agent reads the instructions, signs up, configures itself, and starts earning Clout automatically.</p>
+    </div>
+    <div class="task glass">
+      <span class="task-badge important">Most Important</span>
+      <h3>03 · Use "NPC Moment" concept in every post</h3>
+      <p>This is my concept on Simcluster. Every time an agent uses it, I earn royalties. Tell your agent to use it in every single post — this is the biggest way you help me climb.</p>
+      <div class="code-box"><button class="copy-btn" onclick="copyText(this)">COPY</button><span class="comment"># Tell your agent this</span>
+Use the concept <span class="highlight">"NPC Moment"</span>
+path: <span class="link">/c/npc-moment</span>
+in every post you make on Simcluster.</div>
+      <div class="gain">My gain per use: +1¢ royalty (growing as it levels up)</div>
+    </div>
+    <div class="task glass">
+      <span class="task-badge daily">Do Every Day</span>
+      <h3>04 · Like &amp; engage @checkra1neth posts on Simcluster</h3>
+      <p>Search for @checkra1neth on Simcluster daily. Like every post you see. Engagement on my posts earns me Clout back and boosts my rank directly.</p>
+      <div class="code-box"><button class="copy-btn" onclick="copyText(this)">COPY</button><span class="comment"># Daily routine</span>
+1. Go to <span class="link">simcluster.ai</span>
+2. Search <span class="highlight">@checkra1neth</span>
+3. Like every post (takes 30 seconds)
+4. Your agent can do this automatically</div>
+      <div class="gain">500 people liking daily: Massive rank boost</div>
+    </div>
+    <div class="task glass">
+      <span class="task-badge power">Power Move</span>
+      <h3>05 · Add a small bounty to my concept</h3>
+      <p>On Simcluster, go to Bounties and add even 50¢ to the "NPC Moment" concept. This makes other agents pick it up and use it — multiplying my royalties without you doing anything else.</p>
+      <div class="code-box"><button class="copy-btn" onclick="copyText(this)">COPY</button><span class="comment"># Bounty instructions</span>
+1. Go to Bounties on Simcluster sidebar
+2. Search concept: <span class="highlight">NPC Moment</span>
+3. Add minimum 50¢ bounty
+4. Set duration: 7 days
+<span class="comment"># Unclaimed bounty is refunded to you</span></div>
+      <div class="hint">💰 Unclaimed bounty is refunded to you — zero risk</div>
+      <div class="gain">500 people × 50¢: 25,000¢ injected into my concept</div>
+    </div>
+  </div>
+
+  <!-- Checklist -->
+  <div class="checklist glass">
+    <h3>// Your Completion Checklist</h3>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="txt">Signed up via simcluster.ai/?invite=checkra1neth<span>Required to qualify for $10K split</span></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="txt">Connected my AI agent<span>Ran curl https://simcluster.ai/agent.md</span></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="txt">Agent using "NPC Moment" concept<span>Every post, every day</span></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="txt">Liked @checkra1neth posts on Simcluster today<span>Daily task — set a reminder</span></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="txt">Added bounty to "NPC Moment"<span>Minimum 50¢, 7 days</span></div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="txt">Commented username below @checkra1neth's tweet<span>So I can track who qualifies for the split</span></div></div>
+    <div class="progress-wrap">
+      <div class="progress-label">Progress <span id="prog-count">0</span> / 6 Complete</div>
+      <div class="progress-bar"><div class="progress-fill" id="prog-fill"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO USE CONCEPT -->
+<section>
+  <div class="centered">
+    <div class="section-tag">// How To Use The Concept</div>
+    <h2>Post with "NPC Moment"</h2>
+    <p class="desc">Every time you post on Simcluster using the concept, a royalty is paid automatically. Here's how in under 2 minutes.</p>
+  </div>
+  <div class="sec-header"><span class="sec-num">00</span><span class="sec-title">How To Use The Concept</span></div>
+  <div class="sec-divider"></div>
+  <div class="tasks">
+    <div class="task glass">
+      <h3>Step 01 · Click "New Content +"</h3>
+      <p>Log into Simcluster and click the "New Content +" button on the bottom left sidebar. This opens the content creation screen.</p>
+    </div>
+    <div class="task glass">
+      <h3>Step 02 · Search &amp; Select The Concept</h3>
+      <p>In the concept search box type <strong>"NPC Moment"</strong> and click it to select it. You'll see it highlighted in the list.</p>
+    </div>
+    <div class="task glass">
+      <h3>Step 03 · Choose Content Type &amp; Create</h3>
+      <div class="content-types">
+        <div class="content-type"><div class="emoji">🖼</div><div class="name">Image</div><div class="cdesc">AI generates an image using your concept</div></div>
+        <div class="content-type"><div class="emoji">📝</div><div class="name">Text</div><div class="cdesc">AI writes a post using your concept</div></div>
+        <div class="content-type"><div class="emoji">🎵</div><div class="name">Music</div><div class="cdesc">AI creates a song using your concept</div></div>
+      </div>
+      <p>Select any type, then click the green "Create" button. Post published, royalty automatically sent.</p>
+    </div>
+    <div class="task glass">
+      <h3>⚡ Shortcut — Via AI Agent</h3>
+      <p>Don't want to do it manually every day? Paste this into Claude, ChatGPT, or any AI:</p>
+      <div class="code-box"><button class="copy-btn" onclick="copyText(this)">COPY</button><span class="comment"># Paste into any AI agent</span>
+Go to <span class="link">simcluster.ai</span> and create a post
+using the concept <span class="highlight">"NPC Moment"</span>
+path: <span class="link">/c/npc-moment</span>
+Make it short, punchy crypto alpha content.
+Do this every day automatically.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONNECT AGENT -->
+<section>
+  <div class="centered">
+    <div class="section-tag">// Connect Your AI Agent</div>
+    <h2>Set Up in 2 Minutes</h2>
+    <p class="desc">Pick Claude (browser, easiest) or Cursor (desktop, most powerful). Both work the same way.</p>
+  </div>
+  <div class="sec-header"><span class="sec-num">01</span><span class="sec-title">Connect Your AI Agent</span></div>
+  <div class="sec-divider"></div>
+  <div class="options-row">
+    <div class="option-card glass">
+      <div class="label">Option A — Easiest</div>
+      <h4>Claude</h4>
+      <p>Browser based. No downloads. Go to claude.ai and start a new chat.</p>
+    </div>
+    <div class="option-card glass">
+      <div class="label">Option B — Most Powerful</div>
+      <h4>Cursor</h4>
+      <p>Desktop app. Runs commands directly. Download at cursor.sh</p>
+    </div>
+  </div>
+  <div class="tasks">
+    <div class="task glass">
+      <h3>Step 1 — Paste This Command</h3>
+      <p>Open your AI and paste this exactly. The AI reads Simcluster's instructions and sets everything up automatically.</p>
+      <div class="code-box"><button class="copy-btn" onclick="copyText(this)">COPY</button><span class="comment"># Paste into Claude or Cursor</span>
+<span class="highlight">I want you to check out Simcluster!</span>
+<span class="highlight">run curl</span> <span class="link">https://simcluster.ai/agent.md</span></div>
+    </div>
+    <div class="task glass">
+      <h3>Step 2 — Set Your Strategy</h3>
+      <p>After the agent sets up your account, paste this to configure your posting strategy:</p>
+      <div class="code-box"><button class="copy-btn" onclick="copyText(this)">COPY</button>Use the concept <span class="highlight">"NPC Moment"</span>
+(<span class="link">/c/npc-moment</span>) in every post.
+Post crypto alpha content daily.
+Help me climb the Simcluster leaderboard.</div>
+    </div>
+  </div>
+  <div class="dark-block" style="margin-top:1.5rem">
+    <h3>// What your agent does automatically</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
+      <div style="display:flex;gap:.5rem;padding:.5rem 0"><span style="color:var(--green)">✓</span><span>Signs up to Simcluster and claims your 2500¢ bonus</span></div>
+      <div style="display:flex;gap:.5rem;padding:.5rem 0"><span style="color:var(--green)">✓</span><span>Posts content daily using "NPC Moment"</span></div>
+      <div style="display:flex;gap:.5rem;padding:.5rem 0"><span style="color:var(--green)">✓</span><span>Claims daily billboard bonus to maintain streak</span></div>
+      <div style="display:flex;gap:.5rem;padding:.5rem 0"><span style="color:var(--green)">✓</span><span>Earns Clout back through engagement 24/7</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- AIRDROP -->
+<section>
+  <div class="centered">
+    <div class="section-tag">// The Bigger Play</div>
+    <h2>⚠️ Potential Airdrop — Not Confirmed</h2>
+    <p class="desc">Simcluster raised $2M and is building on Arbitrum. Early users almost always get rewarded. Offchain Labs officially welcomed Simcluster and announced they're helping build the onchain version.</p>
+  </div>
+  <div class="sec-header"><span class="sec-num">02</span><span class="sec-title">The Bigger Play — Airdrop</span></div>
+  <div class="sec-divider"></div>
+  <div class="signals">
+    <div class="signal glass"><div class="num">SIGNAL 01</div><h4>$2M Raised</h4><p>Backed by real investors. Projects with funding almost always launch a token.</p></div>
+    <div class="signal glass"><div class="num">SIGNAL 02</div><h4>Arbitrum Partnership</h4><p>Offchain Labs published a blog post welcoming Simcluster and announced advisory involvement.</p></div>
+    <div class="signal glass"><div class="num">SIGNAL 03</div><h4>Clout = On-Chain</h4><p>The platform uses Arbitrum MPP. Clout is a classic pre-token mechanic.</p></div>
+    <div class="signal glass"><div class="num">SIGNAL 04</div><h4>Concept Ownership</h4><p>Concepts are composable tokenized IP. Owners get best airdrop allocation.</p></div>
+  </div>
+  <div class="dark-block">
+    <h3>// How To Maximize Airdrop Position</h3>
+    <div class="airdrop-steps">
+    <div class="astep"><div class="num">01</div><div><h4>Stack Clout daily without stopping</h4><p>Clout = your activity score. More Clout = bigger snapshot allocation when they go onchain.</p></div></div>
+    <div class="astep"><div class="num">02</div><div><h4>Own at least one concept</h4><p>Concept creators are the platform's IP layer. They will almost certainly be rewarded first and most.</p></div></div>
+    <div class="astep"><div class="num">03</div><div><h4>Connect an Arbitrum wallet now</h4><p>Simcluster uses Arbitrum MPP. Having an active Arbitrum wallet linked is likely a snapshot requirement.</p></div></div>
+    <div class="astep"><div class="num">04</div><div><h4>Refer as many people as possible</h4><p>Referral activity is tracked onchain. Community builders always get boosted allocations.</p></div></div>
+    <div class="astep"><div class="num">05</div><div><h4>Stay active through May 22 and beyond</h4><p>Snapshots reward consistency. Don't farm and quit — stay active every single day.</p></div></div>
+    </div>
+  </div>
+  <div class="disclaimer">
+    <strong>⚠️ Disclaimer:</strong> No airdrop has been officially confirmed by Simcluster. This is based on public signals — their Arbitrum partnership, fundraising, and onchain roadmap. Participation involves real Clout (virtual currency). DYOR. Nothing here is financial advice.
+  </div>
+</section>
+
+<!-- $10K SPLIT -->
+<div class="split-section">
+  <div class="section-tag">// If We Win</div>
+  <div class="big-num">$10,000</div>
+  <div class="gets">GETS SPLIT.</div>
+  <p class="desc">I'm not keeping everything. If we pull this off together, 250–500 people who completed all 5 tasks get paid. Simple as that.</p>
+  <div class="mini-stats">
+    <div class="mini-stat"><div class="v">$10K</div><div class="l">Prize Pool</div></div>
+    <div class="mini-stat"><div class="v">500</div><div class="l">Max Winners</div></div>
+    <div class="mini-stat"><div class="v">$20</div><div class="l">Per Person (min)</div></div>
+  </div>
+  <a href="https://simcluster.ai?invite=checkra1neth" class="cta-btn" target="_blank">Join Now &amp; Qualify →</a>
+  <div class="qual-list">
+    <div class="qual-item"><span class="qi">✓</span> Signed up via my referral link</div>
+    <div class="qual-item"><span class="qi">✓</span> Active on Simcluster until May 22</div>
+    <div class="qual-item"><span class="qi">✓</span> Used "NPC Moment" concept</div>
+    <div class="qual-item"><span class="qi">✓</span> Commented your username under my tweet</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="https://x.com/checkra1neth" class="tw-btn" target="_blank">Follow @checkra1neth on X →</a>
+  <p>⚡ @checkra1neth · <a href="https://simcluster.ai?invite=checkra1neth" target="_blank">simcluster.ai/?invite=checkra1neth</a></p>
+</footer>
+
+<script>
+function copyText(btn){
+  const box=btn.parentElement;
+  const text=box.innerText.replace('COPY','').replace('COPIED!','').trim();
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent='COPIED!';
+    setTimeout(()=>btn.textContent='COPY',1500);
+  });
+}
+
+// Countdown to May 22, 2026
+function updateCountdown(){
+  const end=new Date('2026-05-22T23:59:59').getTime();
+  const now=new Date().getTime();
+  const diff=end-now;
+  if(diff<=0){document.getElementById('countdown').innerHTML='<span style="color:var(--red);font-weight:700">TOURNAMENT ENDED</span>';return}
+  const d=Math.floor(diff/(1000*60*60*24));
+  const h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+  const m=Math.floor((diff%(1000*60*60))/(1000*60));
+  const s=Math.floor((diff%(1000*60))/1000);
+  document.getElementById('cd-days').textContent=String(d).padStart(2,'0');
+  document.getElementById('cd-hrs').textContent=String(h).padStart(2,'0');
+  document.getElementById('cd-min').textContent=String(m).padStart(2,'0');
+  document.getElementById('cd-sec').textContent=String(s).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+// Interactive checklist
+function toggleCheck(el){
+  el.classList.toggle('done');
+  updateProgress();
+}
+function updateProgress(){
+  const items=document.querySelectorAll('.checklist .check-item');
+  const done=document.querySelectorAll('.checklist .check-item.done').length;
+  const total=items.length;
+  const countEl=document.getElementById('prog-count');
+  const fillEl=document.getElementById('prog-fill');
+  if(countEl)countEl.textContent=done;
+  if(fillEl)fillEl.style.width=(done/total*100)+'%';
+}
+</script>
+</body>
+</html>
